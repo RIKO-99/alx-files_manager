@@ -2,10 +2,10 @@ Certainly! Below is a description of project that marks the End of  backend Tris
 ---
 
 # Project Title
-       <h1> FILES MANAGER <h1>
+    FILES MANAGER
 ## Learning Objectives
 
-This project serves as a comprehensive guide to learning key aspects of backend development using Node.js, Express, MongoDB, Redis, and more. By completing this project, you will gain hands-on experience in the following areas:
+This project serves as a comprehensive guide to learning key aspects of backend development using Node.js, Express, MongoDB, Redis, and more. Hands-on experience in the following areas:
 
 - Creating an API with Express
 - Authenticating users with token-based authentication
@@ -88,6 +88,4 @@ npm run lint
 
 Feel free to explore and modify the project structure based on your preferences. Happy coding!
 
---- 
-
-Adjust the placeholders like `<repository-url>` and `<path-to-your-db>` with the appropriate values. This example provides a basic structure, and you can expand or modify it based on the specific details of your project.
+---
