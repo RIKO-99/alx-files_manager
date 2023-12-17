@@ -7,15 +7,26 @@ const url = `mongodb://${DB_HOST}:${DB_PORT}`;
 
 class DBClient {
   constructor() {
-    MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
-      if (!err) {
-        this.db = client.db(DB_DATABASE);
-        this.users = this.db.collection('users');
-        this.files = this.db.collection('files');
-      } else {
-        console.error(`MongoDB connection error: ${err.message}`);
-        this.db = null;
-      }
+    this.db = null;
+    this.users = null;
+    this.files = null;
+
+    const connectPromise = new Promise((resolve, reject) => {
+      MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
+        if (!err) {
+          this.db = client.db(DB_DATABASE);
+          this.users = this.db.collection('users');
+          this.files = this.db.collection('files');
+          resolve();
+        } else {
+          console.error(`MongoDB connection error: ${err.message}`);
+          reject(err); // Reject with the actual error for proper handling
+        }
+      });
+    });
+
+    this.connectionPromise = connectPromise.then(() => {
+      console.log('MongoDB connection established successfully.');
     });
   }
 
@@ -34,6 +45,10 @@ class DBClient {
   async getUser(query) {
     const user = await this.users.findOne(query);
     return user;
+  }
+
+  async waitConnection() {
+    await this.connectionPromise;
   }
 
   close() {
