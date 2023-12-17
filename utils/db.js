@@ -20,13 +20,15 @@ class DBClient {
           resolve();
         } else {
           console.error(`MongoDB connection error: ${err.message}`);
-          reject(err); // Reject with the actual error for proper handling
+          reject(err);
         }
       });
     });
 
     this.connectionPromise = connectPromise.then(() => {
       console.log('MongoDB connection established successfully.');
+    }).catch((error) => {
+      console.error('MongoDB connection promise rejected:', error.message);
     });
   }
 
