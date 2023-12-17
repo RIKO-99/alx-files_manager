@@ -12,9 +12,7 @@ class RedisClient {
 
   // Check if the connection to Redis is alive
   isAlive() {
-    return new Promise((resolve) => {
-      resolve(this.client.connected);
-    });
+    return this.client.connected;
   }
 
   // Retrieve the value for a given key from Redis
