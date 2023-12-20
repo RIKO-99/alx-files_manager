@@ -14,4 +14,3 @@ app.use('/', routes); // Use the routes from the 'routes' folder
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
